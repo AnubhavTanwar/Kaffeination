@@ -1,0 +1,15 @@
+export const SIGNIN = 'SIGNIN';
+export const SIGNUP = 'SIGNUP';
+export const LOGOUT = 'LOGOUT';
+export const HOME_BANNER='HOME_BANNER';
+export const TOP_CATEGORY='TOP_CATEGORY';
+export const STORE_DATA='STORE_DATA';
+export const HOME_LAYOUT='HOME_LAYOUT';
+export const UPDATE_CART='UPDATE_CART';
+export const MASTER_CATEGORY='MASTER_CATEGORY';
+export const FLOATING_ORDERS='FLOATING_ORDERS';
+export const SET_FLOATING_ORDERS='SET_FLOATING_ORDERS';
+export const LOCATION='LOCATION';
+export const USER_ADDRESS='USER_ADDRESS';
+export const SEARCH_DATA='SEARCH_DATA';
+export const SEARCH_KEYS='SEARCH_KEYS';
