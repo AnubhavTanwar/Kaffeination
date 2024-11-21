@@ -138,7 +138,7 @@ export default function Tracking({ route }) {
                             </View>
                             <View style={styles.flexRow}>
                                 <Text style={styles.heading}>Total Amount</Text>
-                                <Text style={styles.label}>${order.total}</Text>
+                                <Text style={styles.label}>₹{order.total.toFixed(2)}</Text>
                             </View>
                         </View>
                     </View>

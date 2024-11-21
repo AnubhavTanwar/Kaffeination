@@ -53,7 +53,7 @@ export default function OrderCard({order }) {
                 </View>
                 <View style={styles.flexRow}>
                     <Text style={styles.text}>Delivery Date: <Text style={{ fontFamily: Font_Heebo_Bold }}>{getFullDate(order.deliveryDate)}</Text></Text>
-                    <Text style={styles.text}>Total Amount: <Text style={{ fontFamily: Font_Heebo_Bold }}>${order.total}</Text></Text>
+                    <Text style={styles.text}>Total Amount: <Text style={{ fontFamily: Font_Heebo_Bold }}>₹{order.total.toFixed(2)}</Text></Text>
                 </View>
                 <View>
                     <Text style={styles.text}>Delivery Time: <Text style={{ fontFamily: Font_Heebo_Bold }}>10:00 AM to 12:30 PM</Text></Text>

@@ -21,7 +21,7 @@ export const ProductCard = ({ key, product }) => {
             <Text style={{ fontSize: 12, color: CHARCOAL_COLOR, fontFamily: Font_Heebo_Regular }}>{product.product.info}</Text>
         </View>
         <View>
-            <Text style={{ fontSize: 16, color: "#000", fontFamily: Font_Heebo_Regular }}>${product.amount}</Text>
+            <Text style={{ fontSize: 16, color: "#000", fontFamily: Font_Heebo_Regular }}>₹{product.amount.toFixed(2)}</Text>
         </View>
     </View>)
 }
@@ -73,7 +73,7 @@ class Confirm extends Component {
                         <Text style={{ fontSize: 16, fontFamily: Font_Heebo_Medium, color: CHARCOAL_COLOR, marginTop: 10 }}>Hey {this.props.data.firstName + " " + this.props.data.lastName}</Text>
                         <Text style={{ fontSize: 26, textAlign: 'center', fontFamily: Font_Lato_Bold, color: "#000", marginTop: 14 }}>Your Order is Confirmed!</Text>
                         <Text style={{ fontSize: 15, fontFamily: Font_Heebo_Medium, color: "#000", textAlign: 'center', marginTop: 14 }}>We will send you a shipping confirmation{'\n'}email  as soon as your orderer ships</Text>
-                        <Text style={{ fontSize: 16, fontFamily: Font_Heebo_Bold, color: "#000", textAlign: 'center', marginTop: 14 }}>Amount Paid - ${order.total}</Text>
+                        <Text style={{ fontSize: 16, fontFamily: Font_Heebo_Bold, color: "#000", textAlign: 'center', marginTop: 14 }}>Amount Paid - ₹{order.total}</Text>
                     </View>
                     <View style={{ borderTopWidth: 10, borderColor: "rgba(245, 245, 245, 1)", paddingHorizontal: 14, paddingVertical: 20 }}>
                         <Text style={{ fontSize: 20, fontFamily: Font_Lato_Bold, color: "#000", marginBottom: 14 }}>Order Details</Text>

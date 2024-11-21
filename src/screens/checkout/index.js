@@ -190,7 +190,7 @@ class Checkout extends Component {
                 <Text style={[styles.invoiceItemLabel, { color: "rgba(94, 196, 1, 1)" }]}>Discount ({this.props.cart.coupon.name})</Text>
                 <Text style={[styles.invoiceItemPrice, { color: "rgba(94, 196, 1, 1)" }]}>applied</Text>
               </View>
-              <Text style={{ flex: 1, fontSize: 13, color: "rgba(94, 196, 1, 1)", fontFamily: Font_Heebo_Regular }}>( ${this.props.cart.discount.toFixed(2)} will be credited in wallet after delivery.)</Text></View> : null}
+              <Text style={{ flex: 1, fontSize: 13, color: "rgba(94, 196, 1, 1)", fontFamily: Font_Heebo_Regular }}>( ₹{this.props.cart.discount.toFixed(2)} will be credited in wallet after delivery.)</Text></View> : null}
             <View style={styles.invoiceItem}>
               <Text style={styles.invoiceItemLabel}>Delivery Charge</Text>
               <Text style={styles.invoiceItemPrice}>{this.props.cart.deliveryCharge ? "- " + this.props.cart.deliveryCharge : "0"}</Text>
@@ -198,7 +198,7 @@ class Checkout extends Component {
             <View style={[styles.invoiceItem, { borderTopWidth: 0.5, paddingTop: 10, borderColor: "rgba(240, 240, 240, 1)" }]}>
               <Text style={{ flex: 1, fontSize: 13, color: CHARCOAL_COLOR, fontFamily: Font_Heebo_Regular }}>{this.props.cart.products?.length} item</Text>
               <Text style={[styles.invoiceItemLabel, { color: "#000", fontFamily: Font_Heebo_Bold, marginRight: 8 }]}>Total</Text>
-              <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>${this.props.cart.paymentTotal.toFixed(2)}</Text>
+              <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>₹{this.props.cart.paymentTotal.toFixed(2)}</Text>
             </View>
           </View>
           <View style={[{ borderTopWidth: 0.5, paddingTop: 10, borderColor: PRIMARY_COLOR, backgroundColor: "#fff", paddingHorizontal: 14, paddingBottom: 14 }]}>
