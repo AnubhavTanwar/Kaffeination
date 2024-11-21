@@ -1,7 +1,7 @@
 import { FlatList, Modal, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Icon from '../../../utils/icons'
-import { CHARCOAL_COLOR, GRAY_COLOR, PLACEHOLDER_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../../../utils/colors'
+import { CHARCOAL_COLOR, GRAY_COLOR, PLACEHOLDER_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR } from '../../../utils/colors'
 import Container from '../../layout/Container'
 import { Font_Heebo_Medium, Font_Heebo_Regular, Font_Lato_Bold, Font_Poppins_Bold } from '../../../utils/typograpy'
 import { TouchableRipple } from 'react-native-paper'
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
     borderRadius: 35,
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: SECONDARY_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
   },

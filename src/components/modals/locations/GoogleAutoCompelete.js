@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { Font_Heebo_Medium, Font_Heebo_Regular, Font_Poppins_Bold } from '../../../utils/typograpy';
-import { GRAY_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../../../utils/colors';
+import { GRAY_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR } from '../../../utils/colors';
 import { useNavigation } from '@react-navigation/native';
 import Icon from '../../../utils/icons';
 import { useDispatch } from 'react-redux';
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         width: 35,
         height: 35,
         borderRadius: 35,
-        backgroundColor: PRIMARY_COLOR,
+        backgroundColor: SECONDARY_COLOR,
         justifyContent: 'center',
         alignItems: 'center',
     },

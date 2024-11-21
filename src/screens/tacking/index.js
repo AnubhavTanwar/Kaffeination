@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Container from '../../components/layout/Container'
 import { SCREEN_HEIGHT, SCREEN_WIDTH, googleKey } from '../../utils/constants'
 import { Font_Heebo_Bold, Font_Heebo_Regular, Font_Heebo_SemiBold } from '../../utils/typograpy'
-import { CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../../utils/colors'
+import { CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR } from '../../utils/colors'
 import Icon from '../../utils/icons'
 import { greenA400 } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors'
 import { Font_Heebo_Medium } from '../../utils/typograpy'
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
         width: 35,
         height: 35,
         borderRadius: 35,
-        backgroundColor: PRIMARY_LIGHT_COLOR,
+        backgroundColor: SECONDARY_COLOR,
         justifyContent: 'center',
         alignItems: 'center',
     },

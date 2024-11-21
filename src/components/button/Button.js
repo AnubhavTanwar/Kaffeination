@@ -1,6 +1,6 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { PRIMARY_COLOR, PRIMARY_LIGHT_COLOR,WHITE } from '../../utils/colors'
+import { PRIMARY_COLOR, PRIMARY_LIGHT_COLOR,SECONDARY_COLOR,WHITE } from '../../utils/colors'
 import { Font_Heebo_Medium } from '../../utils/typograpy'
 import { TouchableRipple } from 'react-native-paper'
 /**
@@ -16,7 +16,7 @@ import { TouchableRipple } from 'react-native-paper'
 export default function Button({ onPress, isDisable = false, title, isLoading }) {
     return (
         <TouchableRipple borderless onPress={onPress && onPress} style={{ borderRadius: 8 }} disabled={isDisable}>
-            <View style={{ backgroundColor: PRIMARY_COLOR, alignItems: 'center', paddingVertical: 14, height: 50, opacity: isDisable ? 0.5 : 1, }}>
+            <View style={{ backgroundColor: SECONDARY_COLOR,borderRadius:14 ,alignItems: 'center', paddingVertical: 14, height: 50, opacity: isDisable ? 0.5 : 1, }}>
             {!isLoading ? 
                     <Text 
                         style={{ 

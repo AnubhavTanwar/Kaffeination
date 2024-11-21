@@ -2,7 +2,7 @@ import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 import React, { useState } from 'react'
 import { Font_Heebo_SemiBold, Font_Poppins_Bold } from '../../utils/typograpy'
 import Icon from '../../utils/icons'
-import { PRIMARY_COLOR } from '../../utils/colors'
+import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/colors'
 import LocationAutoDetect from '../../components/modals/locations/AutoDetect'
 import { useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
@@ -20,26 +20,26 @@ export default function MainHeader() {
   return (
     <View style={styles.header}>
       <View style={styles.logo}>
-        <Image
+        {/* <Image
           source={require('../../assets/logo_new.png')}
           style={styles.logoImage} 
-        />
+        /> */}
       </View>
       <TouchableOpacity style={styles.location} onPress={handleLocationModalTrue}>
       <Icon
         name='location-sharp'
         size={30}
-        color='#fff'
+        color={SECONDARY_COLOR}
         style={[
           { width: 45, height: 35, textAlign: "center", textAlignVertical: 'center' },
           Platform.OS === 'ios' ? { marginTop: 2 } : null, // Adjust the marginTop for iOS
         ]}
       />
         <View style={{ flex: 1, marginRight: 10 }}>
-          <Text style={{ fontSize: 12, color: "#fff", fontFamily: Font_Heebo_SemiBold, }}>{location?.address1?location?.address1:'Your Location'}</Text>
-          <Text style={{ fontSize: 13, color: "#fff", fontFamily: Font_Heebo_SemiBold, }} numberOfLines={1}>{location?.address2}</Text>
+          <Text style={{ fontSize: 12, color: SECONDARY_COLOR, fontFamily: Font_Heebo_SemiBold, }}>{location?.address1?location?.address1:'Your Location'}</Text>
+          <Text style={{ fontSize: 13, color: SECONDARY_COLOR, fontFamily: Font_Heebo_SemiBold, }} numberOfLines={1}>{location?.address2}</Text>
         </View>
-        <Icon name='chevron-down' size={20} color='#fff' />
+        <Icon name='chevron-down' size={20} color={SECONDARY_COLOR} />
       </TouchableOpacity>
       <LocationAutoDetect isVisible={locationModal} onClose={handleLocationModal} />
     </View>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: BACKGROUND_COLOR,
     height: 60,
     zIndex: 1,
     elevation: 10,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 150,
     justifyContent: 'center',
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: BACKGROUND_COLOR,
   },
   logoImage: {
     width: 150,

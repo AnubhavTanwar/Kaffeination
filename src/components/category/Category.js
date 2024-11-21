@@ -4,7 +4,7 @@ import { Font_Heebo_Medium } from '../../utils/typograpy'
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { IMAGE_PLACE_HOLDER } from '../../utils/images';
-import { PRIMARY_COLOR } from '../../utils/colors';
+import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/colors';
 
 const HEADER_MAX_HEIGHT = 40;
 const HEADER_MIN_HEIGHT = 0;
@@ -55,12 +55,12 @@ export default memo(Category)
 const styles = StyleSheet.create({
     subCategory: {
         paddingVertical: 8,
-        backgroundColor: "#FAF3E0",
+        backgroundColor: BACKGROUND_COLOR,
         elevation: 10
     },
     image: {
         borderRadius: 50, // Makes the image circular
-        borderWidth: 2,  // Optional: adds border for better visibility
-        borderColor: PRIMARY_COLOR, // Optional: border color
+        borderWidth: 1,  // Optional: adds border for better visibility
+        borderColor: SECONDARY_COLOR, // Optional: border color
     },
 });

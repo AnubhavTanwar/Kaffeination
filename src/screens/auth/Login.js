@@ -3,7 +3,7 @@ import { Component } from 'react';
 import Container from '../../components/layout/Container'
 import Icon from '../../utils/icons';
 import { Font_Heebo_Regular, Font_Heebo_SemiBold, Font_Lato_Bold } from '../../utils/typograpy';
-import { CHARCOAL_COLOR, GRAY_COLOR, PLACEHOLDER_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../../utils/colors'
+import { CHARCOAL_COLOR, GRAY_COLOR, PLACEHOLDER_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, TEXT_BODY_COLOR } from '../../utils/colors'
 import Button from '../../components/button/Button'
 import { postWithBody, putRequestWithBody } from '../../utils/helper/apiHelper';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
@@ -168,7 +168,7 @@ class Login extends Component {
                             <Text style={styles.paragraph}>Your privacy is important to us, any information we collect is only done with the intent to enhance your experience with us. </Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                 <Text style={{ fontFamily: Font_Heebo_SemiBold, color: "#888" }}>{this.state.email}</Text>
-                                <Text onPress={() => this.setState({ isOtpSend: false, isAuthorized: false })} style={{ color: PRIMARY_COLOR, fontFamily: Font_Heebo_SemiBold }}>Change Email</Text>
+                                <Text onPress={() => this.setState({ isOtpSend: false, isAuthorized: false })} style={{ color: SECONDARY_COLOR, fontFamily: Font_Heebo_SemiBold }}>Change Email</Text>
                             </View>
                             <View style={{ marginTop: 8, marginBottom: 14, width: '89%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                                 <OTPInputView
@@ -302,14 +302,14 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 25,
         fontFamily: Font_Lato_Bold,
-        color: PRIMARY_COLOR,
+        color: SECONDARY_COLOR,
         lineHeight: 30,
         marginBottom: 10
     },
     paragraph: {
         fontSize: 14,
         fontFamily: Font_Heebo_Regular,
-        color: CHARCOAL_COLOR,
+        color: TEXT_BODY_COLOR,
         lineHeight: 19.45,
         marginBottom: 8
 

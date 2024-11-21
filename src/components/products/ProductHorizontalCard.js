@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { CHARCOAL_COLOR, DISCOUNT_BADGE_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../../utils/colors'
+import { CHARCOAL_COLOR, DISCOUNT_BADGE_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR } from '../../utils/colors'
 import { Font_Heebo_Bold, Font_Heebo_Light, Font_Heebo_Medium, Font_Heebo_Regular, Font_Heebo_SemiBold } from '../../utils/typograpy'
 import { SCREEN_WIDTH } from '../../utils/constants';
 import { TouchableRipple } from 'react-native-paper';
@@ -38,8 +38,8 @@ export default function ProductHorizontalCard({ style,isCart,product }) {
                             {getFinalPrice(product)==product.price?null:<Text style={{ fontSize: 12, fontFamily: Font_Heebo_Medium, color: CHARCOAL_COLOR, lineHeight: 14.45, textDecorationColor: CHARCOAL_COLOR, textDecorationLine: 'line-through' }}>₹
                             {product.price}</Text>}
                         </View>
-                        {getFinalPrice(product)>=product.price?null:<View style={{ backgroundColor: DISCOUNT_BADGE_COLOR, paddingHorizontal: 6, paddingVertical: 2 }}>
-                            <Text style={{ fontSize: 11, fontFamily: Font_Heebo_Light, color: "#000" }}>{getFinalDiscount(product)}% off</Text>
+                        {getFinalPrice(product)>=product.price?null:<View style={{ backgroundColor: SECONDARY_COLOR, paddingHorizontal: 6, paddingVertical: 2, borderRadius:10 }}>
+                            <Text style={{ fontSize: 12, fontFamily: Font_Heebo_Medium, color: "#fff",paddingVertical:2, paddingHorizontal:6 }}>{getFinalDiscount(product)}% off</Text>
                         </View>}
                     </View>
                     {getCount(product)==0 ?
@@ -49,13 +49,19 @@ export default function ProductHorizontalCard({ style,isCart,product }) {
                             </View>
                         </TouchableRipple> :
                         <View style={{ width: 100, height: 30, flexDirection: 'row', marginRight: 20 , alignItems: 'center', }}>
-                            <TouchableRipple style={styles.cartButton} onPress={() => productCount(product,'plus',isCart)}>
+                            <TouchableRipple style={[styles.cartButton, { 
+                            borderTopLeftRadius: 12,
+                            borderBottomLeftRadius: 12 
+                        }]} onPress={() => productCount(product,'plus',isCart)}>
                                 <Icon name='plus' type='entypo' color='#fff' />
                             </TouchableRipple>
                             <View style={styles.cartNumber}>
                                 <Text style={{ fontSize: 14, fontFamily: Font_Heebo_Bold, color: "#000" }}>{getCount(product)}</Text>
                             </View>
-                            <TouchableRipple style={styles.cartButton} onPress={()=> productCount(product,'minus',isCart)}>
+                            <TouchableRipple style={[styles.cartButton, { 
+                            borderTopRightRadius: 12,
+                            borderBottomRightRadius: 12 
+                        }]} onPress={()=> productCount(product,'minus',isCart)}>
                                 <Icon name='minus' type='entypo' color='#fff' />
                             </TouchableRipple>
                         </View>}
@@ -90,8 +96,8 @@ const styles = StyleSheet.create({
     cartButton: {
         width: (PRODUCT_WIDTH / 3) + 4,
         alignItems: 'center',
-        backgroundColor: PRIMARY_COLOR,
-        height: 30,
+        backgroundColor: SECONDARY_COLOR,
+        height: 31,
         justifyContent: 'center'
     },
     cartNumber: {
@@ -99,7 +105,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 30,
         borderWidth: 1,
-        borderColor: PRIMARY_COLOR,
+        borderColor: SECONDARY_COLOR,
         justifyContent: 'center',
     },
     // removeButton: {

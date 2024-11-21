@@ -5,7 +5,7 @@ import MainHeader from '../../components/header/MainHeader'
 import Category from '../../components/category/Category'
 import Icon from '../../utils/icons'
 import { Font_Heebo_Bold, Font_Heebo_Light, Font_Heebo_Medium, Font_Lato_Bold, Font_Poppins_Bold } from '../../utils/typograpy'
-import { DISCOUNT_BADGE_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../../utils/colors'
+import { DISCOUNT_BADGE_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, TEXT_BODY_COLOR } from '../../utils/colors'
 import Swiper from 'react-native-swiper'
 import { FaqData, SCREEN_WIDTH } from '../../utils/constants'
 import { BestTag } from '../../components/tags/tags'
@@ -74,7 +74,7 @@ export default class ProductDescriptionPage extends Component {
                             />
                         </View>
                         {/* <Icon name='arrow-back' size={22} style={styles.backButton} onPress={()=>this.props.navigation.goBack()}/> */}
-                        <Text style={{ fontSize: 22, marginLeft: 5 ,fontFamily: Font_Lato_Bold, color: PRIMARY_COLOR }}>Category Name</Text>
+                        <Text style={{ fontSize: 22, marginLeft: 5 ,fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR }}>Category Name</Text>
                     </View>
                     <View style={styles.imageContainer}>
                         <Swiper {...swiperConfig}>
@@ -84,15 +84,15 @@ export default class ProductDescriptionPage extends Component {
                         </Swiper>
                     </View>
                     <View style={{ paddingHorizontal: 14 }}>
-                        <Text style={{ fontSize: 22, fontFamily: Font_Lato_Bold, color: "#000", lineHeight: 30, marginBottom: 10 }}>{product.name}</Text>
-                        <Text style={{ fontSize: 22, fontFamily: Font_Lato_Bold, color: "#000", lineHeight: 30, marginBottom: 10 }}>{product.description}</Text>
+                        <Text style={{ fontSize: 22, fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR, lineHeight: 30, marginBottom: 10 }}>{product.name}</Text>
+                        <Text style={{ fontSize: 18, fontFamily: Font_Lato_Bold, color: TEXT_BODY_COLOR, lineHeight: 25, marginBottom: 10 }}>{product.description}</Text>
                         <BestTag />
                         <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 14, justifyContent: 'space-between' }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                                <Text style={{ fontSize: 22, fontFamily: Font_Heebo_Bold, color: "#000" }}>${getFinalPrice(product)}</Text>
-                                {getFinalPrice(product)>=product.price?null:<Text style={styles.discountPrice}>${product.price}</Text>}
-                                {getFinalPrice(product)>=product.price?null:<View style={{ backgroundColor: DISCOUNT_BADGE_COLOR, paddingHorizontal: 6, paddingVertical: 2 }}>
-                                    <Text style={{ fontSize: 11, fontFamily: Font_Heebo_Light, color: "#000" }}>{getFinalDiscount(product)}% off</Text>
+                                <Text style={{ fontSize: 22, fontFamily: Font_Heebo_Bold, color: "#000" }}>₹{getFinalPrice(product)}</Text>
+                                {getFinalPrice(product)>=product.price?null:<Text style={styles.discountPrice}>₹{product.price}</Text>}
+                                {getFinalPrice(product)>=product.price?null:<View style={{ backgroundColor: SECONDARY_COLOR, paddingHorizontal: 6, paddingVertical: 2 }}>
+                                    <Text style={{ fontSize: 11, fontFamily: Font_Heebo_Light, color: "#fff" }}>{getFinalDiscount(product)}% off</Text>
                                 </View>}
                             </View>
                             <View>
@@ -110,11 +110,11 @@ export default class ProductDescriptionPage extends Component {
 
                     </View>
                     <View style={{ paddingHorizontal: 14, marginVertical: 20, marginBottom: 20 }}>
-                        <Text style={{ fontSize: 22, fontFamily: Font_Lato_Bold, color: "#000" }}>You can also check this items</Text>
+                        <Text style={{ fontSize: 22, fontFamily: Font_Lato_Bold, color: "#000" }}>You can also check these items</Text>
                     </View>
                     {/* <ProductHorizontalList hideListHeader /> */}
                     <View style={{ paddingHorizontal: 14, marginVertical: 14 }}>
-                        <Text style={{ fontSize: 30, fontFamily: Font_Lato_Bold, color: PRIMARY_COLOR, textTransform: 'capitalize' }}>frequently asked questions</Text>
+                        <Text style={{ fontSize: 30, fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR, textTransform: 'capitalize' }}>frequently asked questions</Text>
                     </View>
                     <View style={{ paddingHorizontal: 14 }}>
                         <CollapsibleHeader data={FaqData} />
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 
     },
     discountPrice: {
-        fontSize: 17,
+        fontSize: 14,
         fontFamily: Font_Heebo_Bold,
         color: "rgba(145, 145, 145, 1)",
         textDecorationColor: 'rgba(145,145,145,1)',
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 30,
-        backgroundColor: PRIMARY_LIGHT_COLOR,
+        backgroundColor: SECONDARY_COLOR,
         justifyContent: 'center',
         alignItems: 'center',
       },

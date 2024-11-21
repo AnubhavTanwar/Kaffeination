@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Icon from '../../../utils/icons'
 import { TouchableRipple } from 'react-native-paper'
 import { Font_Heebo_Medium, Font_Heebo_SemiBold, Font_Lato_Bold } from '../../../utils/typograpy'
-import { CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_LIGHT_COLOR } from '../../../utils/colors'
+import { BACKGROUND_COLOR, CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, SECONDARY_LIGHT_COLOR, TEXT_BODY_COLOR } from '../../../utils/colors'
 import LocationManuallyType from './ManuallyType'
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../utils/constants'
 import GetLocation from 'react-native-get-location'
@@ -75,14 +75,14 @@ export default function Autodetect({ isVisible, onClose }) {
                 style={styles.icon}
               />
             </View>
-              <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: "#000", marginLeft: 10 }}>Select Location</Text>
+              <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR, marginLeft: 10 }}>Select Location</Text>
             </View>
-            <Text style={{ fontSize: 14, fontFamily: Font_Heebo_Medium, color: CHARCOAL_COLOR, marginBottom: 16, marginLeft: 5 }}>Please provide your delivery location for the best experience</Text>
+            <Text style={{ fontSize: 14, fontFamily: Font_Heebo_Medium, color: TEXT_BODY_COLOR, marginBottom: 16, marginLeft: 5 }}>Please provide your delivery location for the best experience</Text>
             <View style={styles.buttonWrapper}>
               <TouchableRipple style={styles.button} onPress={handleTypeManually}>
                 <Text style={{ fontSize: 14, fontFamily: Font_Heebo_SemiBold, color: "#000" }}>Type Manually</Text>
               </TouchableRipple>
-              <TouchableRipple style={[styles.button, { backgroundColor: PRIMARY_COLOR }]} onPress={handleAutoDetect}>
+              <TouchableRipple style={[styles.button, { backgroundColor: SECONDARY_COLOR }]} onPress={handleAutoDetect}>
                 <Text style={{ fontSize: 14, fontFamily: Font_Heebo_SemiBold, color: "#fff" }}>Auto Detect</Text>
               </TouchableRipple>
             </View>
@@ -113,11 +113,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   button: {
-    backgroundColor: SECONDARY_LIGHT_COLOR,
+    backgroundColor: BACKGROUND_COLOR,
     width: "48%",
     height: 40,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth:2
   },
   absolute: {
     width: SCREEN_WIDTH,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: SECONDARY_COLOR,
     overflow: 'hidden', // Ensure the icon stays within the circular boundary
   },
   icon: {
