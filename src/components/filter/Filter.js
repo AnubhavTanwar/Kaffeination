@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, StyleSheet, View, Modal, TextInput, FlatList, SafeAreaView } from 'react-native';
 import Icon from '../../utils/icons';
 import { Font_Heebo_Medium, Font_Heebo_Regular, Font_Heebo_SemiBold, Font_Lato_Bold } from '../../utils/typograpy';
-import { GRAY_COLOR, PLACEHOLDER_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_LIGHT_COLOR } from '../../utils/colors';
+import { GRAY_COLOR, PLACEHOLDER_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, SECONDARY_LIGHT_COLOR } from '../../utils/colors';
 import Button from '../button/Button';
 import { TouchableRipple } from 'react-native-paper';
 import RadioButton from '../button/RadioButton'
@@ -126,7 +126,7 @@ export default function Filter({ isVisible, onClose, products, filterProducts })
                     <View style={styles.suHeadings}>
                         <Text style={{ fontSize: 18, fontFamily: Font_Heebo_Medium, color: "#000" }}>Categories</Text>
                         <TouchableRipple onPress={clearAllFilters} style={styles.clearAll}>
-                            <Text style={{ fontSize: 12, fontFamily: Font_Heebo_Regular, color: "#000" }}>Clear All</Text>
+                            <Text style={{ fontSize: 12, fontFamily: Font_Heebo_Regular, color: "#fff" }}>Clear All</Text>
                         </TouchableRipple>
                     </View>
                     <View style={{ flex: 1 }}>
@@ -185,9 +185,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     clearAll: {
-        backgroundColor: SECONDARY_LIGHT_COLOR,
+        backgroundColor: SECONDARY_COLOR,
         paddingHorizontal: 14,
         paddingVertical: 3,
-        borderRadius: 15,
+        borderRadius: 7,
     },
 });

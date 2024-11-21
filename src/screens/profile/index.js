@@ -2,7 +2,7 @@ import { Text, StyleSheet, View, ScrollView, Linking } from 'react-native'
 import React, { Component } from 'react'
 import Container from '../../components/layout/Container'
 import { Font_Heebo_Bold, Font_Heebo_Medium, Font_Heebo_Regular, Font_Lato_Bold, Font_Poppins_Bold, Font_Poppins_Regular } from '../../utils/typograpy'
-import { CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, SECONDARY_LIGHT_COLOR } from '../../utils/colors'
+import { CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, SECONDARY_LIGHT_COLOR, TEXT_BODY_COLOR } from '../../utils/colors'
 import { TouchableRipple } from 'react-native-paper'
 import Icon from '../../utils/icons'
 import ConfirmModal from '../../components/modals/alerts/Confirm'
@@ -49,14 +49,14 @@ class Profile extends Component {
     return (
       <Container>
         <View style={styles.header}>
-          <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: "#000", }}>{this.props.data ? "My Profile" : "Login First"}</Text>
+          <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: "#000",fontWeight:900 }}>{this.props.data ? "My Profile" : "Login First"}</Text>
         </View>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardDismissMode='interactive' keyboardShouldPersistTaps='handled'>
           {this.props.data ? <React.Fragment>
             <View style={styles.profileContainer}>
               <View>
                 <Text style={{ fontSize: 20, fontFamily: Font_Heebo_Bold, color: "#fff" }}>{this.props.data.firstName} {this.props.data.lastName}</Text>
-                <Text style={{ fontSize: 17, fontFamily: Font_Heebo_Medium, color: SECONDARY_COLOR }}>{this.props.data.email}</Text>
+                <Text style={{ fontSize: 17, fontFamily: Font_Heebo_Medium, color: TEXT_BODY_COLOR }}>{this.props.data.email}</Text>
               </View>
             </View>
             <View>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   profileContainer: {
     paddingHorizontal: 14,
     backgroundColor: "rgba(244,244,244,1)",
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: SECONDARY_COLOR,
     paddingVertical: 20,
     marginBottom: 10
 

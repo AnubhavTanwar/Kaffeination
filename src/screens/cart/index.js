@@ -4,7 +4,7 @@ import Container from '../../components/layout/Container'
 import { Font_Heebo_Bold, Font_Heebo_Medium, Font_Heebo_Regular, Font_Lato_Bold, Font_Poppins_Bold, Font_Poppins_Regular } from '../../utils/typograpy'
 import ProductHorizontalCard from '../../components/products/ProductHorizontalCard'
 import { TouchableRipple } from 'react-native-paper'
-import { BUTTON_COLOR, CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, TEXT_BODY_COLOR, TEXT_HEADING_COLOR, WHITE } from '../../utils/colors'
+import { BUTTON_COLOR, CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, TEXT_BODY_COLOR, TEXT_HEADING_COLOR, WHITE } from '../../utils/colors'
 import Icon from '../../utils/icons'
 import ChangeAddress from '../../components/modals/locations/AutoDetect'
 import ClearCart from '../../components/modals/alerts/Confirm'
@@ -68,12 +68,12 @@ class Cart extends Component {
     return (
       <Container style={{ backgroundColor: BACKGROUND_COLOR}}>
         <View style={styles.header}>
-          <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: "#000" }}>My Cart</Text>
+          <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: "#000",fontWeight:900 }}>My Cart</Text>
         </View>
         {!this.props.cart ? <CartEmpty /> : <React.Fragment>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14, paddingHorizontal: 14 }}>
-            <Text style={{ fontFamily: Font_Lato_Bold, color: CHARCOAL_COLOR, fontSize: 18, }}>Products</Text>
-            <Text onPress={this.handleClearCart} style={{ fontFamily: Font_Lato_Bold, color: CHARCOAL_COLOR, fontSize: 16, textTransform: 'uppercase' }}>Clear Cart</Text>
+            <Text style={{ fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR, fontSize: 18, fontWeight:800 }}>Products</Text>
+            <Text onPress={this.handleClearCart} style={{ fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR, fontSize: 16, textTransform: 'uppercase' }}>Clear Cart</Text>
           </View>
           <FlatList
             ItemSeparatorComponent={() => <View style={{ height: 0 }} />}
@@ -82,7 +82,7 @@ class Cart extends Component {
             renderItem={({ item, index }) => <ProductHorizontalCard product={item.product} isCart={true} style={{ paddingHorizontal: 14 }} />}
             ListFooterComponent={
               <>
-                <TouchableRipple style={{ backgroundColor: PRIMARY_COLOR, marginHorizontal: 14, paddingVertical: 14, alignItems: 'center', borderRadius: 10 }}
+                <TouchableRipple style={{ backgroundColor: SECONDARY_COLOR, marginHorizontal: 14, paddingVertical: 14, alignItems: 'center', borderRadius: 14 }}
                   onPress={() => this.props.navigation.navigate('home')}>
                   <Text style={{ fontSize: 16, fontFamily: Font_Heebo_Medium, color: "#fff", textTransform: 'capitalize' }}>Add more product</Text>
                 </TouchableRipple>
@@ -113,15 +113,15 @@ class Cart extends Component {
                     <Text style={styles.invoiceItemPrice}>₹{this.props.cart?.grandTotal ? this.props.cart?.grandTotal : 0}</Text>
                   </View>
                   {isNullOrEmpty(this.props.cart?.discount)?null:<View style={styles.invoiceItem}>
-                    <Text style={[styles.invoiceItemLabel, { color: BUTTON_COLOR }]}>Discount</Text>
-                    <Text style={[styles.invoiceItemPrice, { color: BUTTON_COLOR }]}>-₹{this.props.cart?.discount}</Text>
+                    <Text style={[styles.invoiceItemLabel, { color: '#909090' }]}>Discount</Text>
+                    <Text style={[styles.invoiceItemPrice, { color: '#909090' }]}>-₹{this.props.cart?.discount}</Text>
                   </View>}
                   {isNullOrEmpty(this.props.cart?.deliveryCharge)?null:<View style={styles.invoiceItem}>
                     <Text style={styles.invoiceItemLabel}>Delivery Charge</Text>
                     <Text style={styles.invoiceItemPrice}>{this.props.cart?.deliveryCharge}</Text>
                   </View>}
                   <View style={[styles.invoiceItem, { borderTopWidth: 0.5, paddingTop: 10, borderColor: PRIMARY_COLOR }]}>
-                    <Text style={[styles.invoiceItemLabel, { color: "#000", fontFamily: Font_Heebo_Bold }]}>Total</Text>
+                    <Text style={[styles.invoiceItemLabel, { color: "#000", fontFamily: Font_Heebo_Bold, }]}>Total</Text>
                     <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>₹{this.props.cart?.total ? this.props.cart?.total : 0}</Text>
                   </View>
                 </View>
@@ -131,7 +131,7 @@ class Cart extends Component {
             ListFooterComponentStyle={{ marginTop: 28 }}
           />
           <View>
-            <TouchableRipple onPress={() => this.props.navigation.navigate("checkout")} style={{ backgroundColor: "#8C6A5D", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 14 }}>
+            <TouchableRipple onPress={() => this.props.navigation.navigate("checkout")} style={{ backgroundColor: "#909090", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 14 }}>
               <React.Fragment>
                 <Text style={{ fontSize: 14, color: "#fff", fontFamily: Font_Heebo_Medium, marginRight: 14 }}>Proceed to checkout</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center',  }}>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 17,
     marginBottom:17,
-    backgroundColor:'#F5F5DC'
+    backgroundColor:BACKGROUND_COLOR
   },
 
   deliveryAddressContainer: {
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   invoiceItemLabel: {
     fontSize: 20,
     fontFamily: Font_Lato_Bold,
-    color: PRIMARY_COLOR
+    color: SECONDARY_COLOR
   },
   invoiceItemPrice: {
     fontSize: 20,

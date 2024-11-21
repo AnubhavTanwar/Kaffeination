@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { PRIMARY_COLOR, TEXT_HEADING_COLOR } from '../../utils/colors'
-import { Font_Heebo_Medium, Font_Lato_Bold } from '../../utils/typograpy'
+import { PRIMARY_COLOR, SECONDARY_COLOR, TEXT_HEADING_COLOR } from '../../utils/colors'
+import { Font_Heebo_Medium, Font_Lato_Bold, Font_Poppins_Regular } from '../../utils/typograpy'
 import { TouchableRipple } from 'react-native-paper'
 import ProductCard from './ProductCard'
 import { useNavigation } from '@react-navigation/native'
@@ -24,8 +24,8 @@ export default function ProductHorizontalList({ hideListHeader, hideViewMore,ite
             {!hideListHeader &&
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14 }}>
                     <Text style={styles.heading}>{item.name}</Text>
-                    {!hideViewMore && <TouchableRipple style={{ backgroundColor: "#556B2F", padding: 5 }} onPress={() => navigation.navigate("plp",{data:item})}>
-                        <Text style={styles.viewMoreButton}>View More <Icon name='chevron-forward' size={12} color='#fff' /></Text>
+                    {!hideViewMore && <TouchableRipple style={{ padding: 5 }} onPress={() => navigation.navigate("plp",{data:item})}>
+                        <Text style={styles.viewMoreButton}>View More <Icon name='chevron-forward' size={14} color={SECONDARY_COLOR} /></Text>
                     </TouchableRipple>}
 
                 </View>}
@@ -50,19 +50,21 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 20,
         fontFamily: Font_Lato_Bold,
-        color: TEXT_HEADING_COLOR,
+        fontFamily: Font_Poppins_Regular,
+        color: SECONDARY_COLOR,
+        // color: 'red',
         fontWeight: "bold",
         paddingVertical: 14,
         textTransform: 'uppercase'
     },
     viewMoreButton: {
-        fontSize: 11,
-        color: "#fff",
+        fontSize: 14,
+        color: SECONDARY_COLOR,
         // backgroundColor: '#556B2F',
         // textDecorationColor: "#000",
         // textDecorationLine: 'underline',
         fontFamily: Font_Heebo_Medium,
-
+        
 
     }
 })

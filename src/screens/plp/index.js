@@ -4,8 +4,8 @@ import Container from '../../components/layout/Container'
 import ProductCard from '../../components/products/ProductCard'
 import MainHeader from '../../components/header/MainHeader'
 import Category from '../../components/category/Category'
-import { Font_Heebo_SemiBold, Font_Lato_Bold } from '../../utils/typograpy';
-import { PRIMARY_COLOR } from '../../utils/colors'
+import { Font_Heebo_Bold, Font_Heebo_SemiBold, Font_Lato_Bold } from '../../utils/typograpy';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/colors'
 import Icon from '../../utils/icons'
 import { SCREEN_WIDTH } from '../../utils/constants'
 import Filter from '../../components/filter/Filter'
@@ -69,7 +69,7 @@ class ProductListingPages extends Component {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     ListHeaderComponent={() => <View style={{ paddingHorizontal: 14, paddingVertical: 14, flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 22, fontFamily: Font_Lato_Bold, color: PRIMARY_COLOR }}>{this.props.route.params.data.name}</Text>
+                        <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: SECONDARY_COLOR }}>{this.props.route.params.data.name}</Text>
                         <Icon />
                     </View>}
                     numColumns={2}
@@ -81,7 +81,7 @@ class ProductListingPages extends Component {
                 />
                 <View style={{ position: 'absolute', bottom: 15, right: 15 }}>
                     <View style={styles.badge}>
-                        <Text style={{ fontSize: 8, fontFamily: Font_Heebo_SemiBold, color: "#fff" }}>1</Text>
+                        <Text style={{ fontSize: 8, fontFamily: Font_Heebo_Bold, color: "#000",borderColor:'#000' }}>1</Text>
                     </View>
                     <TouchableOpacity style={styles.filterIcon} onPress={this.handleFilterModal}>
                         <Icon name='filter' size={26} type='fontAwesome' color="#fff" />
@@ -118,11 +118,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 50,
         overflow: 'hidden',
-        backgroundColor: PRIMARY_COLOR,
+        backgroundColor: SECONDARY_COLOR,
         // overflow: 'hidden'
     },
     badge: {
-        backgroundColor: "#f00000",
+        backgroundColor: "#fff",
+        borderColor:'#000',
         borderRadius: 100,
         position: 'absolute',
         right: 5,

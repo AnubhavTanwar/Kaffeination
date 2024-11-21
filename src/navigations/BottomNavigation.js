@@ -3,7 +3,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { HomeScreen, CartScreen, SearchScreen, ProfileScreen } from './routes'
 import Icon from '../utils/icons'
-import { BUTTON_COLOR, CHARCOAL_COLOR, ICON_ACTIVE_COLOR, INACTIVE_TIN_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, TEXT_HEADING_COLOR } from '../utils/colors'
+import { BUTTON_COLOR, ICON_ACTIVE_COLOR, ICON_INACTIVE_COLOR, SECONDARY_COLOR, } from '../utils/colors'
 import { Font_Heebo_Light, Font_Heebo_SemiBold } from '../utils/typograpy'
 import { useSelector } from 'react-redux'
 
@@ -15,14 +15,14 @@ export default function BottomNavigation() {
         <Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: BUTTON_COLOR,
-                tabBarInactiveTintColor: TEXT_HEADING_COLOR,
+                tabBarActiveTintColor: ICON_ACTIVE_COLOR,
+                tabBarInactiveTintColor: ICON_INACTIVE_COLOR,
                 tabBarShowLabel: false,
                 // tabBarHideOnKeyboard: true,
                 unmountOnBlur: false,
                 tabBarStyle: {
                     borderTopWidth: 0,
-                    backgroundColor:'#FAF3E0',
+                    backgroundColor:'#fff',
                 }
             }}>
             <Screen name='home' component={HomeScreen}
@@ -40,7 +40,8 @@ export default function BottomNavigation() {
                     tabBarBadge: cart?cart.products.length:0,
                     tabBarBadgeStyle: {
                         fontSize: 8,
-                        fontFamily: Font_Heebo_SemiBold
+                        fontFamily: Font_Heebo_SemiBold,
+                        backgroundColor:SECONDARY_COLOR
                     }
                 }} />
             <Screen name='profile' component={ProfileScreen}
