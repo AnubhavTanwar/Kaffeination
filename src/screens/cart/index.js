@@ -4,7 +4,7 @@ import Container from '../../components/layout/Container'
 import { Font_Heebo_Bold, Font_Heebo_Medium, Font_Heebo_Regular, Font_Lato_Bold, Font_Poppins_Bold, Font_Poppins_Regular } from '../../utils/typograpy'
 import ProductHorizontalCard from '../../components/products/ProductHorizontalCard'
 import { TouchableRipple } from 'react-native-paper'
-import { BUTTON_COLOR, CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, TEXT_HEADING_COLOR, WHITE } from '../../utils/colors'
+import { BUTTON_COLOR, CHARCOAL_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, TEXT_BODY_COLOR, TEXT_HEADING_COLOR, WHITE } from '../../utils/colors'
 import Icon from '../../utils/icons'
 import ChangeAddress from '../../components/modals/locations/AutoDetect'
 import ClearCart from '../../components/modals/alerts/Confirm'
@@ -66,7 +66,7 @@ class Cart extends Component {
   render() {
     const { isAddressChange, isCartClear } = this.state
     return (
-      <Container style={{ backgroundColor:'#fff'}}>
+      <Container style={{ backgroundColor: BACKGROUND_COLOR}}>
         <View style={styles.header}>
           <Text style={{ fontSize: 25, fontFamily: Font_Lato_Bold, color: "#000" }}>My Cart</Text>
         </View>
@@ -163,8 +163,9 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 14,
     paddingTop: 14,
-    paddingBottom: 33,
-    backgroundColor:'red'
+    paddingBottom: 17,
+    marginBottom:17,
+    backgroundColor:'#F5F5DC'
   },
 
   deliveryAddressContainer: {
