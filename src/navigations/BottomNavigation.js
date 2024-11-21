@@ -3,7 +3,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { HomeScreen, CartScreen, SearchScreen, ProfileScreen } from './routes'
 import Icon from '../utils/icons'
-import { INACTIVE_TIN_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from '../utils/colors'
+import { BUTTON_COLOR, CHARCOAL_COLOR, ICON_ACTIVE_COLOR, INACTIVE_TIN_COLOR, PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, TEXT_HEADING_COLOR } from '../utils/colors'
 import { Font_Heebo_Light, Font_Heebo_SemiBold } from '../utils/typograpy'
 import { useSelector } from 'react-redux'
 
@@ -15,14 +15,14 @@ export default function BottomNavigation() {
         <Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: PRIMARY_COLOR,
-                tabBarInactiveTintColor: INACTIVE_TIN_COLOR,
+                tabBarActiveTintColor: BUTTON_COLOR,
+                tabBarInactiveTintColor: TEXT_HEADING_COLOR,
                 tabBarShowLabel: false,
                 // tabBarHideOnKeyboard: true,
                 unmountOnBlur: false,
                 tabBarStyle: {
                     borderTopWidth: 0,
-                    backgroundColor:'#EEEDEB',
+                    backgroundColor:'#FAF3E0',
                 }
             }}>
             <Screen name='home' component={HomeScreen}

@@ -31,7 +31,7 @@ export default function ProductHorizontalCard({ style,isCart,product }) {
                     <Text style={{ fontSize: 12, fontFamily: Font_Heebo_Medium, color: "#4E545C", lineHeight: 15.45 }}>{product.info}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-                    <View style={{ alignItems: 'flex-start', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <View style={{ alignItems: 'flex-start', flexDirection: 'column', justifyContent: 'space-between', }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={{ fontSize: 16, fontFamily: Font_Heebo_Bold, color: "#28282B", lineHeight: 20.45, marginRight: 5 }}>₹
                             {getFinalPrice(product)}</Text>
@@ -71,11 +71,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         borderBottomColor: "rgba(240, 240, 240, 1)",
         borderBottomWidth: 0.5,
-        paddingVertical: 14
-
+        paddingVertical: 14,
+        
     },
     imageContainer: {
-        paddingRight: 10
+        paddingRight: 10,
     },
     image: {
         width: PRODUCT_WIDTH,

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 150,
     justifyContent: 'center',
-    backgroundColor: '#430A5D',
+    backgroundColor: PRIMARY_COLOR,
   },
   logoImage: {
     width: 150,
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     borderLeftColor: 'red',
     borderRightWidth: 2,
     borderRightColor: 'red',
-    // backgroundColor: '#430A5D', 
 },
   location: {
     flexDirection: 'row',

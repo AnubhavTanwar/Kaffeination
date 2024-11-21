@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { PRIMARY_COLOR } from '../../utils/colors'
+import { PRIMARY_COLOR, TEXT_HEADING_COLOR } from '../../utils/colors'
 import { Font_Heebo_Medium, Font_Lato_Bold } from '../../utils/typograpy'
 import { TouchableRipple } from 'react-native-paper'
 import ProductCard from './ProductCard'
@@ -22,16 +22,16 @@ export default function ProductHorizontalList({ hideListHeader, hideViewMore,ite
         isListNullOrEmpty(item.products)?null:
         <View style={styles.productList}>
             {!hideListHeader &&
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14 }}>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14 }}>
                     <Text style={styles.heading}>{item.name}</Text>
-                    {!hideViewMore && <TouchableRipple style={{ backgroundColor: "#f1f1f1", padding: 5 }} onPress={() => navigation.navigate("plp",{data:item})}>
-                        <Text style={styles.viewMoreButton}>View More <Icon name='chevron-forward' size={12} color='#000' /></Text>
+                    {!hideViewMore && <TouchableRipple style={{ backgroundColor: "#556B2F", padding: 5 }} onPress={() => navigation.navigate("plp",{data:item})}>
+                        <Text style={styles.viewMoreButton}>View More <Icon name='chevron-forward' size={12} color='#fff' /></Text>
                     </TouchableRipple>}
 
                 </View>}
             <FlatList
                 horizontal
-                ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
+                ItemSeparatorComponent={() => <View style={{ width: 25 }} />}
                 contentContainerStyle={{ paddingHorizontal: 14 }}
                 data={item.products}
                 showsHorizontalScrollIndicator={false}
@@ -50,18 +50,18 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 20,
         fontFamily: Font_Lato_Bold,
-        color: PRIMARY_COLOR,
+        color: TEXT_HEADING_COLOR,
+        fontWeight: "bold",
         paddingVertical: 14,
         textTransform: 'uppercase'
     },
     viewMoreButton: {
         fontSize: 11,
-        color: "#000",
+        color: "#fff",
+        // backgroundColor: '#556B2F',
         // textDecorationColor: "#000",
         // textDecorationLine: 'underline',
         fontFamily: Font_Heebo_Medium,
-        backgroundColor:PRIMARY_COLOR,
-
 
 
     }
