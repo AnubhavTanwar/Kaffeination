@@ -28,6 +28,9 @@ import { googleKey } from "../../utils/constants";
 
 const { width, height } = Dimensions.get("window");
 
+const DEFAULT_LATITUDE = 37.7749;
+const DEFAULT_LONGITUDE = -122.4194;
+
 class AddAddress extends Component {
   constructor(props) {
     super(props);
@@ -46,18 +49,18 @@ class AddAddress extends Component {
       lastName: "",
       otherContact: "",
       location: "",
-      postalCode: this.props.location.addressDetails.zipCode,
-      city: this.props.location.addressDetails.city,
-      state: this.props.location.addressDetails.state,
-      country: this.props.location.addressDetails.country,
+      postalCode: this.props.location?.addressDetails?.zipCode,
+      city: this.props.location?.addressDetails?.city,
+      state: this.props.location?.addressDetails?.state,
+      country: this.props.location?.addressDetails?.country,
       tag: "Home",
       address: {},
-      address1: this.props.location.address1,
-      address2: this.props.location.address2,
+      address1: this.props.location?.address1,
+      address2: this.props.location?.address2,
       isLoading: false,
       region: {
-        latitude: this.props.location.lat,
-        longitude: this.props.location.long,
+        latitude: this.props.location.lat || DEFAULT_LATITUDE,
+        longitude: this.props.location.long || DEFAULT_LONGITUDE,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
@@ -70,44 +73,44 @@ class AddAddress extends Component {
   componentDidMount() {
     const { data } = this.props;
     try {
-      let address = this.props.route.params.address;
+      let address = this.props.route.params?.address;
       console.log(address);
       this.setState({
-        firstName: address.firstName ? address.firstName : "",
-        lastName: address.lastName ? address.lastName : "",
-        postalCode: address.postalCode ? address.postalCode : "",
-        otherContact: address.altPhone ? address.altPhone : "",
-        location: address.landmark,
-        tag: address.tag,
-        address: address,
+        firstName: address?.firstName ? address?.firstName : "",
+        lastName: address?.lastName ? address?.lastName : "",
+        postalCode: address?.postalCode ? address?.postalCode : "",
+        otherContact: address?.altPhone ? address?.altPhone : "",
+        location: address?.landmark,
+        tag: address?.tag,
+        address: address ?? '',
         region: {
-          latitude: address.location.coordinates[1],
-          longitude: address.location.coordinates[0],
+          latitude: address?.location?.coordinates[1] || DEFAULT_LATITUDE,
+          longitude: address?.location?.coordinates[0] || DEFAULT_LONGITUDE,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         },
       });
       if (this.googlePlacesAutocomplete !== null) {
-        this.setDataToGooglePlacesAutocomplete(address.address);
+        this.setDataToGooglePlacesAutocomplete(address?.address);
       }
     } catch (err) {
       console.log(err, 'error');
       const { addressDetails } = this.props.location
-      this.setDataToGooglePlacesAutocomplete(addressDetails.address)
+      this.setDataToGooglePlacesAutocomplete(addressDetails?.address)
     }
   }
   async setDataToGooglePlacesAutocomplete(address) {
-    let array = address.split(',')
-    array = array.reverse()
-    if (array.length > 4) { array.pop() }
-    if (array.length > 4) { array.pop() }
-    if (array.length > 4) { array.pop() }
-    if (array.length > 4) { array.pop() }
-    if (array.length > 4) { array.pop() }
-    array.reverse()
-    await this.setState({ location: array.join() });
+    let array = address?.split(',')
+    array = array?.reverse()
+    if (array?.length > 4) { array.pop() }
+    if (array?.length > 4) { array.pop() }
+    if (array?.length > 4) { array.pop() }
+    if (array?.length > 4) { array.pop() }
+    if (array?.length > 4) { array.pop() }
+    array?.reverse()
+    await this.setState({ location: array?.join() });
     if (this.googlePlacesAutocomplete !== null) {
-      this.googlePlacesAutocomplete.setAddressText(array.join());
+      this.googlePlacesAutocomplete.setAddressText(array?.join());
     }
   }
   onChangeText = (key, val) => {
@@ -116,7 +119,7 @@ class AddAddress extends Component {
 
   saveLocation() {
 
-    let { _id } = this.state.address;
+    let { _id } = this.state?.address;
 
     if (_id) {
       this.updateAddress(_id);
@@ -199,10 +202,10 @@ class AddAddress extends Component {
 
   async handleSearch(data, details) {
 
-    var lat = details.geometry.location.lat;
-    var long = details.geometry.location.lng;
+    var lat = details?.geometry?.location?.lat;
+    var long = details?.geometry?.location?.lng;
     var addressDict = {
-      address: details.formatted_address,
+      address: details?.formatted_address,
       latitude: lat,
       longitude: long,
     };
@@ -234,7 +237,7 @@ class AddAddress extends Component {
     this.setState({ region: region1 });
     let address = await getAutoAddress(region.latitude, region.longitude, preAddress);
     if (this.googlePlacesAutocomplete !== null) {
-      this.setDataToGooglePlacesAutocomplete(address.addressDetails?.address);
+      this.setDataToGooglePlacesAutocomplete(address?.addressDetails?.address);
     }
     console.log(address, "fsdfsdgsgsd");
     this.setState({
@@ -246,8 +249,8 @@ class AddAddress extends Component {
       country: address.addressDetails?.country,
       postalCode: address?.addressDetails?.zipCode,
       region: {
-        latitude: address.addressDetails.latitude,
-        longitude: address.addressDetails.longitude,
+        latitude: address?.addressDetails?.latitude,
+        longitude: address?.addressDetails?.longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       }
@@ -278,20 +281,20 @@ class AddAddress extends Component {
               region={this.state.region}
               onPress={(e) => {
                 if (e.nativeEvent.action !== "marker-press") {
-                  this.onRegionChange(e.nativeEvent.coordinate);
+                  this.onRegionChange(e?.nativeEvent?.coordinate);
                 } else {
-                  this.onRegionChange(e.nativeEvent.coordinate);
+                  this.onRegionChange(e?.nativeEvent?.coordinate);
                 }
               }}
             >
               <Marker
                 coordinate={{
-                  latitude: this.state.region.latitude,
-                  longitude: this.state.region.longitude,
+                  latitude: this.state?.region?.latitude,
+                  longitude: this.state?.region?.longitude,
                 }}
                 draggable
-                onDragEnd={e => this.onRegionChange(e.nativeEvent.coordinate)}
-                onPress={e => this.onRegionChange(e.nativeEvent.coordinate)}
+                onDragEnd={e => this.onRegionChange(e?.nativeEvent?.coordinate)}
+                onPress={e => this.onRegionChange(e?.nativeEvent?.coordinate)}
               />
             </MapView>
           </View>

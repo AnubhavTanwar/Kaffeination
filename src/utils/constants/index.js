@@ -1,7 +1,7 @@
 import { Dimensions, StatusBar } from 'react-native'
 
 
-export const BASE_URL='https://grocery1.onrender.com/api/';
+export const BASE_URL='https://kaffeination-ecom-app.onrender.com/api/';
 export const googleKey='AIzaSyD-SlQGUQRZgEcXPqVqcjlQ5yImFSHC9GU';
 
 export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')

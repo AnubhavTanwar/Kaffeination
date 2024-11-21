@@ -114,7 +114,7 @@ class Cart extends Component {
                   </View>
                   {isNullOrEmpty(this.props.cart?.discount)?null:<View style={styles.invoiceItem}>
                     <Text style={[styles.invoiceItemLabel, { color: BUTTON_COLOR }]}>Discount</Text>
-                    <Text style={[styles.invoiceItemPrice, { color: BUTTON_COLOR }]}>-₹{this.props.cart?.discount}</Text>
+                    <Text style={[styles.invoiceItemPrice, { color: BUTTON_COLOR }]}>-₹{this.props.cart?.discount.toFixed(2)}</Text>
                   </View>}
                   {isNullOrEmpty(this.props.cart?.deliveryCharge)?null:<View style={styles.invoiceItem}>
                     <Text style={styles.invoiceItemLabel}>Delivery Charge</Text>
@@ -122,7 +122,7 @@ class Cart extends Component {
                   </View>}
                   <View style={[styles.invoiceItem, { borderTopWidth: 0.5, paddingTop: 10, borderColor: PRIMARY_COLOR }]}>
                     <Text style={[styles.invoiceItemLabel, { color: "#000", fontFamily: Font_Heebo_Bold }]}>Total</Text>
-                    <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>₹{this.props.cart?.total ? this.props.cart?.total : 0}</Text>
+                    <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>₹{this.props.cart?.total ? this.props.cart?.total.toFixed(2) : 0}</Text>
                   </View>
                 </View>
               </>
@@ -135,7 +135,7 @@ class Cart extends Component {
               <React.Fragment>
                 <Text style={{ fontSize: 14, color: "#fff", fontFamily: Font_Heebo_Medium, marginRight: 14 }}>Proceed to checkout</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center',  }}>
-                  <Text style={{ fontSize: 15, color: "#fff", fontFamily: Font_Heebo_Medium, marginRight: 14 }}>Total ₹{this.props.cart?.total ? this.props.cart?.total : 0}</Text>
+                  <Text style={{ fontSize: 15, color: "#fff", fontFamily: Font_Heebo_Medium, marginRight: 14 }}>Total ₹{this.props.cart?.total ? this.props.cart?.total.toFixed(2) : 0}</Text>
                   <Icon name='arrow-forward' color='#fff' size={20} />
                 </View>
               </React.Fragment>

@@ -57,6 +57,7 @@ class Profile extends Component {
               <View>
                 <Text style={{ fontSize: 20, fontFamily: Font_Heebo_Bold, color: "#fff" }}>{this.props.data.firstName} {this.props.data.lastName}</Text>
                 <Text style={{ fontSize: 17, fontFamily: Font_Heebo_Medium, color: SECONDARY_COLOR }}>{this.props.data.email}</Text>
+                <Text style={{ fontSize: 16, fontFamily: Font_Heebo_Medium, color: "#FFD700", marginTop: 8 }}>Wallet Balance: ₹{this.props.data.walletBalance.toFixed(2)}</Text>
               </View>
             </View>
             <View>

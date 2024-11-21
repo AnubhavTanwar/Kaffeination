@@ -76,7 +76,7 @@ export const deleteRequest = (subURL) => {
       })
       .catch((error) => {
         reject({err:true,msg:'Something want wrong'})
-        console.log(subURL,"this is catch getRequest", error);
+        console.log(subURL,"this is catch deleteRequest", error);
       });
   })
 }
@@ -189,7 +189,7 @@ export const getAutoAddress = (lat, long,preAddress) => {
       })
       .catch((error) => {
         reject({err:true,msg:'Something want wrong'})
-        console.log("this is catch getRequest", error);
+        console.log("this is catch getAddressObject", error);
       });
     }else{
       obj =await getAddressObject(elemen)
