@@ -150,11 +150,25 @@ export const checkStore = (id) => {
     try {
       let storeData = await getRequest('store/getById/'+ id);
       if (storeData?.store?.status === "open") {
-        
       } else {
         alert("Store is closed");
       }
       resolve("ok")
     } catch (e) { reject(e) }
   })
+}
+
+export const getWalletBalance = (data, id) => {
+  getRequest('user/getWalletBalance/' + id)
+    .then(res => {
+      if (!res.err) {
+        const walletBalance = res.walletBalance
+        store.dispatch({ type: 'UPDATE_DATA', payload: { data, walletBalance} })
+      } else {
+        store.dispatch({ type: 'UPDATE_CART', payload: '' })
+      }
+    }).catch(error => {
+      console.log(error, 'getCart');
+      store.dispatch({ type: 'UPDATE_CART', payload: '' })
+    })
 }

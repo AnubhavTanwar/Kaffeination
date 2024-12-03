@@ -1,5 +1,6 @@
 export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
+export const UPDATE_DATA = 'UPDATE_DATA';
 export const LOGOUT = 'LOGOUT';
 export const HOME_BANNER='HOME_BANNER';
 export const TOP_CATEGORY='TOP_CATEGORY';

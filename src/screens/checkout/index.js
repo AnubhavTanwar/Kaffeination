@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Modal } from 'react-native'
+import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Modal, Switch } from 'react-native'
 import React, { Component, useEffect } from 'react'
 import Container from '../../components/layout/Container'
 import Header from '../../components/header/Header'
@@ -15,6 +15,7 @@ import { updateCart } from '../../actions/thunkActions'
 import InitializePaymentSheet from './initializePaymentSheet'
 import { getCurrentSessionId } from 'react-native-clarity'
 import Loader from '../../components/loader/Loader'
+import { getWalletBalance } from '../../utils/appUtil/appUtil'
 
 class Checkout extends Component {
   constructor(props) {
@@ -28,7 +29,8 @@ class Checkout extends Component {
       isPaymentInit: false,
       showConfirmModal: false,
       order: '',
-      loading:false
+      loading:false,
+      useWallet: false
     }
   }
   componentDidMount() {
@@ -123,10 +125,42 @@ class Checkout extends Component {
       .then((res) => {
         if (!res.err) {
           this.setState({ order: res.created, isPaymentInit: true });
-          this.paymentSuccess();
+          // console.log("response ", res);
+          this.createPayment(res.created?._id)
         } else {
           alert(res.msg);
           this.setState({ loading: false });
+          this.paymentFailed();
+        }
+      })
+      .catch((err) => {
+        this.setState({ loading: false });
+        console.log(err, 'placeOrder');
+      });
+  };
+
+  createPayment = (orderId) => {
+    this.setState({ showConfirmModal: false, loading: true });
+
+    let body = {   
+      userId: this.props.data._id,
+      orderId: orderId,
+      currency: "inr",
+      amount: this.props.cart?.paymentTotal?.toFixed(2),
+      payment_method: "COD",
+      useWallet: this.state.useWallet
+    }
+    // console.log("body ", body)
+    postWithBody('payment/createPayment', JSON.stringify(body))
+      .then((res) => {
+        if (!res.err) {
+          this.setState({ order: res.created, isPaymentInit: true });
+          getWalletBalance(this.props.data, this.props.data._id)
+          this.paymentSuccess();
+        } else {
+          console.log(res);
+          this.setState({ loading: false });
+          this.paymentFailed();
         }
       })
       .catch((err) => {
@@ -148,8 +182,19 @@ class Checkout extends Component {
     this.props.navigation.navigate("order-confirm")
     this.props.clearCart('')
   }
+
+  handleWalletToggle = (value) => {
+    this.setState({ useWallet: value });
+  };
+
   render() {
-    const { isPaymentInit, order, loading, addressSelect, isShippingAddressOpen, showConfirmModal } = this.state
+    const { isPaymentInit, order, loading, addressSelect, isShippingAddressOpen, showConfirmModal, useWallet } = this.state
+    const { cart, data} = this.props;
+
+    const totalPrice = cart?.paymentTotal
+    ? Math.max(cart.paymentTotal - (useWallet ? data?.walletBalance : 0), 0).toFixed(2)
+    : "0.00";
+
     return (
       <Container >
         {/* {isPaymentInit ? <InitializePaymentSheet order={order} paymentSuccess={()=>this.paymentSuccess()} paymentFailed={() => this.paymentFailed()} /> : null} */}
@@ -220,7 +265,7 @@ class Checkout extends Component {
           <View style={styles.invoiceContainer}>
             <View style={styles.invoiceItem}>
               <Text style={styles.invoiceItemLabel}>Total Cart Price</Text>
-              <Text style={styles.invoiceItemPrice}>{this.props.cart?.total?.toFixed(2)}</Text>
+              <Text style={styles.invoiceItemPrice}>₹{this.props.cart?.total?.toFixed(2)}</Text>
             </View>
             {this.props.cart.coupon ? <View style={{ marginBottom: 17 }}>
               <View style={[styles.invoiceItem, { marginBottom: 0 }]}>
@@ -232,10 +277,25 @@ class Checkout extends Component {
               <Text style={styles.invoiceItemLabel}>Delivery Charge</Text>
               <Text style={styles.invoiceItemPrice}>{this.props.cart?.deliveryCharge ? "- " + this.props.cart?.deliveryCharge : "0"}</Text>
             </View>
+            
+            {/* Wallet Balance Section */}
+            {data?.walletBalance ?
+            <View style={[styles.invoiceItem, { flexDirection: "row", alignItems: "center" }]}>
+              <Text style={styles.invoiceItemLabel}>
+                Use Wallet Balance (₹{data.walletBalance.toFixed(2)})
+              </Text>
+              <Switch
+                value={useWallet}
+                onValueChange={this.handleWalletToggle}
+                trackColor={{ false: "#767577", true: "rgba(94, 196, 1, 1)" }}
+                thumbColor={useWallet ? "#5EC401" : "#f4f3f4"}
+              />
+            </View>: null }
+
             <View style={[styles.invoiceItem, { borderTopWidth: 0.5, paddingTop: 10, borderColor: "rgba(240, 240, 240, 1)" }]}>
               <Text style={{ flex: 1, fontSize: 13, color: CHARCOAL_COLOR, fontFamily: Font_Heebo_Regular }}>{this.props.cart.products?.length} item</Text>
               <Text style={[styles.invoiceItemLabel, { color: "#000", fontFamily: Font_Heebo_Bold, marginRight: 8 }]}>Total</Text>
-              <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>₹{this.props.cart?.paymentTotal?.toFixed(2)}</Text>
+              <Text style={[styles.invoiceItemPrice, { color: "#000", fontFamily: Font_Heebo_Bold }]}>₹{totalPrice}</Text>
             </View>
           </View>
           <View style={[{ borderTopWidth: 0.5, paddingTop: 10, borderColor: PRIMARY_COLOR, backgroundColor: "#fff", paddingHorizontal: 14, paddingBottom: 14 }]}>

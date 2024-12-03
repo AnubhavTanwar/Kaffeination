@@ -8,6 +8,7 @@ import Icon from '../../utils/icons'
 import ConfirmModal from '../../components/modals/alerts/Confirm'
 import Login from '../auth/Login'
 import { connect } from 'react-redux'
+import { getWalletBalance } from '../../utils/appUtil/appUtil'
 
 const ListItem = ({ iconName, iconColor, title, onPress }) => {
   return (<TouchableRipple onPress={onPress && onPress} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', borderBottomWidth: 1, borderBottomColor: "rgba(244,244,244,1)", paddingVertical: 22, paddingHorizontal: 18 }}>
@@ -43,6 +44,9 @@ class Profile extends Component {
   handleLogout = () => {
     this.props.logOut()
     this.handleLogoutConfirm()
+  }
+  componentDidMount() {
+    getWalletBalance(this.props.data, this.props.data._id)
   }
   render() {
     const { isLogout,phoneNumber } = this.state

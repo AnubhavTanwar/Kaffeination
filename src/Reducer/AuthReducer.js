@@ -21,6 +21,8 @@ const AuthReducer = (state = user, action) => {
             return { ...state, data: action.payload };
         case Actions.SIGNUP:
             return { ...state, data: action.payload };
+        case Actions.UPDATE_DATA:
+            return { ...state, data: {...action.payload.data, walletBalance: action.payload.walletBalance}};
         case Actions.LOGOUT:
             return { ...state, data: '',cart:'',floatingOrders:[],userAddress:[]};
         case Actions.HOME_BANNER:
